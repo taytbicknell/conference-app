@@ -1,1 +1,0 @@
-json.second_speaker @speaker

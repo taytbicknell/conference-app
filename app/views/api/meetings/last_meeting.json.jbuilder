@@ -1,1 +1,0 @@
-json.last_meeting @meeting

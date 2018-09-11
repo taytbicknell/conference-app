@@ -1,33 +1,10 @@
 class Api::MeetingsController < ApplicationController
-
-  def all_meetings_method 
-    @meetings = Meeting.all
-    render "all_meetings.json.jbuilder"
-  end     
-
-  def first_meeting_method 
-    @product = Meeting.find_by(id: 1)
-    render "first_meeting.json.jbuilder"
-  end
-
-  def second_meeting_method 
-    @meeting = Meeting.find_by(id: 2)
-    render "second_meeting.json.jbuilder"
-  end
-
-  def last_meeting_method 
-    @meeting = Meeting.find_by(id: 4)
-    render "last_meeting.json.jbuilder"
-  end
-
-  def query_params_method
-    input_value = params["message"]
-    @message = "Message says #{input_value}"
-    render "query_params.json.jbuilder"
-  end
-
   def index
     @meetings = Meeting.all
+    if params[:search]
+      @meetings = Meeting.where("id LIKE ? OR title LIKE ? OR agenda LIKE ? OR time LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    end
+    @meetings = @meetings.order(id: :asc)
     render "index.json.jbuilder"
   end
 

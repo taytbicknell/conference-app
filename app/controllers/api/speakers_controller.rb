@@ -1,33 +1,10 @@
 class Api::SpeakersController < ApplicationController
-
-  def all_speakers_method 
-    @speakers = Speaker.all
-    render "all_speakers.json.jbuilder"
-  end
-
-  def first_speaker_method 
-    @product = Speaker.find_by(id: 1)
-    render "first_speaker.json.jbuilder"
-  end
-
-  def second_speaker_method 
-    @speaker = Speaker.find_by(id: 2)
-    render "second_speaker.json.jbuilder"
-  end
-
-  def last_speaker_method 
-    @speaker = Speaker.find_by(id: 4)
-    render "last_speaker.json.jbuilder"
-  end
-
-  def query_params_method
-    input_value = params["message"]
-    @message = "Message says #{input_value}"
-    render "query_params.json.jbuilder"
-  end
-
   def index
     @speakers = Speaker.all
+    if params[:search]
+      @speakers = Speaker.where("id LIKE ? OR first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ? OR phone LIKE ? OR email LIKE ? OR bio LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    end
+    @speakers = @speakers.order(id: :asc)
     render "index.json.jbuilder"
   end
 
