@@ -1,0 +1,1 @@
+json.first_meeting @meeting
