@@ -1,6 +1,7 @@
 class Speaker < ApplicationRecord
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :first_name,length: {minimum: 2}
+  validates :last_name, {minimum: 2}
+  validates :age, {minimum: 18}
   validates :email, uniqueness: true
   validates :email, format: {
     with: URI::MailTo::EMAIL_REGEXP,
