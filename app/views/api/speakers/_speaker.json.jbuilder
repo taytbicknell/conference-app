@@ -4,6 +4,7 @@ json.middle_name speaker.middle_name
 json.last_name speaker.last_name
 json.email speaker.email
 json.gender speaker.gender
+json.age speaker.age
 
 
 json.formatted do 

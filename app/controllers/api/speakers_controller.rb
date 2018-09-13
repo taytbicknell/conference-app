@@ -1,9 +1,12 @@
 class Api::SpeakersController < ApplicationController
+  
   def index
     @speakers = Speaker.all
+    
     if params[:search]
-      @speakers = Speaker.where("id LIKE ? OR first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ? OR phone LIKE ? OR email LIKE ? OR bio LIKE ? OR gender LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+      @speakers = Speaker.where("id LIKE ? OR first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ? OR phone LIKE ? OR email LIKE ? OR bio LIKE ? OR gender LIKE ? OR age LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
     end
+    
     @speakers = @speakers.order(id: :asc)
     render "index.json.jbuilder"
   end
@@ -22,8 +25,10 @@ class Api::SpeakersController < ApplicationController
     email: params[:email],
     image_url: params[:image_url],
     bio: params[:bio],
-    gender: params[:gender]
+    gender: params[:gender],
+    age: params[:age]
     )
+    
     if @speaker.save
       render "show.json.jbuilder"
     else
@@ -41,7 +46,7 @@ class Api::SpeakersController < ApplicationController
     @speaker.image_url = params[:image_url] || @speaker.image_url
     @speaker.bio = params[:bio] || @speaker.bio
     @speaker.gender = params[:gender] || @speaker.gender
-
+    @speaker.age = params[:age] || @speaker.age
 
     if @speaker.save
       render "show.json.jbuilder"
@@ -55,4 +60,5 @@ class Api::SpeakersController < ApplicationController
     @speaker.destroy
     render json: {message: "Speaker destroyed"}
   end
+
 end

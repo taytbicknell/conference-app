@@ -1,4 +1,7 @@
 class Speaker < ApplicationRecord
+ 
+  has_many :meetings
+
   validates :first_name,length: {minimum: 2}
   validates :last_name, {minimum: 2}
   validates :age, {minimum: 18}
