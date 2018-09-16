@@ -1,13 +1,7 @@
 class Api::MeetingsController < ApplicationController
   
   def index
-    @meetings = Meeting.all
-    
-    if params[:search]
-      @meetings = Meeting.where("id LIKE ? OR title LIKE ? OR agenda LIKE ? OR time LIKE ? OR location LIKE ? OR speaker LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
-    end
-    
-    @meetings = @meetings.order(id: :asc)
+    @meetings = Meeting.order(id: :asc)
     render "index.json.jbuilder"
   end
 
@@ -23,9 +17,7 @@ class Api::MeetingsController < ApplicationController
     time: params[:time],
     location: params[:location],
     remote: params[:remote],
-    speaker: params[:speaker],
-    speaker_email: params[:speaker_email],
-    speaker_id: params[:speaker_id]
+    speaker: params[:speaker]
     )
     
     if @meeting.save
@@ -43,8 +35,6 @@ class Api::MeetingsController < ApplicationController
     @meeting.location = params[:location] || @meeting.location
     @meeting.remote = params[:remote] || @meeting.remote
     @meeting.speaker = params[:speaker] || @meeting.speaker
-    @meeting.speaker_email = params[:speaker_email] || @meeting.speaker_email
-    @meeting.speaker_id = params[:speaker_id] || @meeting.speaker_id
 
     if @meeting.save
       render "show.json.jbuilder"

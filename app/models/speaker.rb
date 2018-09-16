@@ -2,9 +2,6 @@ class Speaker < ApplicationRecord
  
   has_many :meetings
 
-  validates :first_name,length: {minimum: 2}
-  validates :last_name, {minimum: 2}
-  validates :age, {minimum: 18}
   validates :email, uniqueness: true
   validates :email, format: {
     with: URI::MailTo::EMAIL_REGEXP,
@@ -20,6 +17,6 @@ class Speaker < ApplicationRecord
   end 
 
   def full_name
-    "#{first_name} #{middle_name} #{last_name}"
+    "#{first_name} #{last_name}"
   end   
 end

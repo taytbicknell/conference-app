@@ -1,13 +1,7 @@
 class Api::SpeakersController < ApplicationController
   
   def index
-    @speakers = Speaker.all
-    
-    if params[:search]
-      @speakers = Speaker.where("id LIKE ? OR first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ? OR phone LIKE ? OR email LIKE ? OR bio LIKE ? OR gender LIKE ? OR age LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
-    end
-    
-    @speakers = @speakers.order(id: :asc)
+    @speakers = Speaker.order(id: :asc)
     render "index.json.jbuilder"
   end
 
@@ -19,12 +13,8 @@ class Api::SpeakersController < ApplicationController
   def create
     @speaker = Speaker.new(
     first_name: params[:first_name],
-    middle_name: params[:middle_name],
     last_name: params[:last_name],
-    phone: params[:phone],
     email: params[:email],
-    image_url: params[:image_url],
-    bio: params[:bio],
     gender: params[:gender],
     age: params[:age]
     )
@@ -39,12 +29,9 @@ class Api::SpeakersController < ApplicationController
   def update
     @speaker = Speaker.find(params[:id])
     @speaker.first_name = params[:first_name] || @speaker.first_name
-    @speaker.middle_name = params[:middle_name] || @speaker.middle_name
     @speaker.last_name = params[:last_name] || @speaker.last_name
     @speaker.phone = params[:phone] || @speaker.phone
     @speaker.email = params[:email] || @speaker.email
-    @speaker.image_url = params[:image_url] || @speaker.image_url
-    @speaker.bio = params[:bio] || @speaker.bio
     @speaker.gender = params[:gender] || @speaker.gender
     @speaker.age = params[:age] || @speaker.age
 
@@ -58,7 +45,7 @@ class Api::SpeakersController < ApplicationController
   def destroy
     @speaker = Speaker.find(params[:id])
     @speaker.destroy
-    render json: {message: "Speaker destroyed"}
+    render json: {message: "speaker destroyed"}
   end
 
 end

@@ -15,5 +15,6 @@ Speaker.create!([
 ])
 
 Meeting.create!([
-  {title: "Phase 1", agenda: "Ideas/Mapping", time: "09:00 AM"}
+  {title: "Phase 1", agenda: "Ideas/Mapping", time: "09:00 AM", location: "San Francisco, CA", speaker_id: 4},
+  {title: "Phase 2", agenda: "Database Architecture", time: "09:00 AM", speaker_id: 6}
 ])
