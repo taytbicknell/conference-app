@@ -1,5 +1,4 @@
 class Speaker < ApplicationRecord
- 
   has_many :meetings
 
   validates :email, uniqueness: true

@@ -1,5 +1,6 @@
 class Api::MeetingsController < ApplicationController
-  
+  before_action :authenticate_admin, except: [:index, :show]
+
   def index
     @meetings = Meeting.order(id: :asc)
     render "index.json.jbuilder"

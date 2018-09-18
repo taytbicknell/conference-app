@@ -14,11 +14,16 @@ Rails.application.routes.draw do
     post "/speakers" => "speakers#create"
     patch "/speakers/:id" => "speakers#update"
     delete "/speakers/:id" => "speakers#destroy"
+    
     get "/meetings" => "meetings#index"
     get "/meetings/:id" => "meetings#show"
     post "/meetings" => "meetings#create"
     patch "/meetings/:id" => "meetings#update"
     delete "/meetings/:id" => "meetings#destroy"
+
+    post "/users" => "users#create"
+    post "/sessions" => "sessions#create"
+
   end
 
 end
