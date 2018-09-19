@@ -18,7 +18,7 @@ class Api::MeetingsController < ApplicationController
     time: params[:time],
     location: params[:location],
     remote: params[:remote],
-    speaker: params[:speaker]
+    speaker_id: params[:speaker_id]
     )
     
     if @meeting.save
