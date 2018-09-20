@@ -6,6 +6,7 @@ json.location meeting.location
 json.remote meeting.remote
 json.speaker meeting.speaker
 json.current_user current_user
+json.topics meeting.topics
 
 
 json.formatted do 
