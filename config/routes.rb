@@ -23,8 +23,20 @@ Rails.application.routes.draw do
 
     post "/users" => "users#create"
     get "/users/:id" => "users#show"
+    
     post "/sessions" => "sessions#create"
 
+    get "/topics" => "topics#index"
+    get "/topics/:id" => "topics#show"
+    post "/topics" => "topics#create"    
+    patch "/topics/:id" => "topics#update"
+    delete "/topics/:id" => "topics#destroy"
+
+    get "/meeting_topics" => "meeting_topics#index"
+    get "/meeting_topics/:id" => "meeting_topics#show"
+    post "/meeting_topics" => "meeting_topics#create"
+    patch "/meeting_topics/:id" => "meeting_topics#update"
+    delete "/meeting_topics/:id" => "meeting_topics#destroy"
   end
 
 end

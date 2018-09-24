@@ -3,7 +3,6 @@ class Meeting < ApplicationRecord
   has_many :meeting_topics
   has_many :topics, through: :meeting_topics
 
-  
   def friendly_created_at
     created_at.strftime("%A, %b %d")
   end 

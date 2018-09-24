@@ -31,7 +31,6 @@ class Api::SpeakersController < ApplicationController
     @speaker = Speaker.find(params[:id])
     @speaker.first_name = params[:first_name] || @speaker.first_name
     @speaker.last_name = params[:last_name] || @speaker.last_name
-    @speaker.phone = params[:phone] || @speaker.phone
     @speaker.email = params[:email] || @speaker.email
     @speaker.gender = params[:gender] || @speaker.gender
     @speaker.age = params[:age] || @speaker.age
